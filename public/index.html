@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Student Quiz</title>
+  <title>John Latif</title>
   <style>
     :root {
       --primary: #007bff;
@@ -219,14 +219,14 @@
 </head>
 <body>
   <div class="container">
-    <h2>Student Quiz</h2>
+    <h2>John Latif</h2>
     
     <div id="user-info" class="card">
-      <h3>Enter Your Information</h3>
+      <h3>أدخل معلوماتك</h3>
       <input type="text" id="name" placeholder="Enter your full name" />
       <input type="tel" id="phone" placeholder="Enter your phone number" />
       <div class="text-center">
-        <button onclick="startQuiz()">Start Quiz</button>
+        <button onclick="startQuiz()">ابدأ</button>
       </div>
     </div>
 
@@ -234,7 +234,7 @@
       <div class="warning-message">
         ⚠️ تحذير: إذا قمت بتحديث الصفحة، سيتم إرسال الاختبار تلقائياً!
       </div>
-      <div class="timer" id="timer">Time: 10:00</div>
+      <div class="timer" id="timer">الوقت: 2:00</div>
       <div class="progress-bar">
         <div class="progress" id="progress" style="width: 0%"></div>
       </div>
@@ -242,204 +242,31 @@
       <form id="quiz">
         <!-- الأسئلة هنا (نفس الأسئلة السابقة) -->
         <div class="question">
-          <p>1. Which do you think is …………………… city in the world?</p>
-          <label><input type="radio" name="q1" value="A" /> exciting</label>
-          <label><input type="radio" name="q1" value="B" /> more exciting</label>
-          <label><input type="radio" name="q1" value="C" /> most exciting</label>
-          <label><input type="radio" name="q1" value="D" /> the most exciting</label>
+          <p>1. ما هو اليوم المفضل لدي من ايام الاسبوع؟</p>
+          <label><input type="radio" name="q1" value="A" />السبت</label>
+          <label><input type="radio" name="q1" value="B" />الاحد</label>
+          <label><input type="radio" name="q1" value="C" />الاثنين</label>
+          <label><input type="radio" name="q1" value="D" />الثلاثاء</label>
+          <label><input type="radio" name="q1" value="E" />الاربعاء</label>
+         <label><input type="radio" name="q1" value="F" />الخميس</label>
+         <label><input type="radio" name="q1" value="G" />الجمعة</label>
         </div>
-        
         <div class="question">
-          <p>2. Going by plane is …………………… more expensive than going by bus.</p>
-          <label><input type="radio" name="q2" value="A" /> a lot</label>
-          <label><input type="radio" name="q2" value="B" /> a lot of</label>
-          <label><input type="radio" name="q2" value="C" /> lots of</label>
-          <label><input type="radio" name="q2" value="D" /> many</label>
+          <p>2. ما هو افضل تطبيق للتسلية على الاطلاق بالنسبة لي؟</p>
+          <label><input type="radio" name="q2" value="A" />تيك توك</label>
+          <label><input type="radio" name="q2" value="B" />نيتفلكس</label>
+          <label><input type="radio" name="q2" value="C" /> يوتيوب</label>
+          <label><input type="radio" name="q2" value="D" />لا شئ مما سبق</label>
         </div>
-        
-        <div class="question">
-          <p>3. Ali is as ………………………… as Sami. They are the same height.</p>
-          <label><input type="radio" name="q3" value="A" /> tall</label>
-          <label><input type="radio" name="q3" value="B" /> heavy</label>
-          <label><input type="radio" name="q3" value="C" /> high</label>
-          <label><input type="radio" name="q3" value="D" /> long</label>
-        </div>
-        
-        <div class="question">
-          <p>4. Perhaps I looked bad this morning, but she looked …………… .</p>
-          <label><input type="radio" name="q4" value="A" /> worse</label>
-          <label><input type="radio" name="q4" value="B" /> the worst</label>
-          <label><input type="radio" name="q4" value="C" /> more badly</label>
-          <label><input type="radio" name="q4" value="D" /> badly</label>
-        </div>
-        
-        <div class="question">
-          <p>5. Cars are twice as …………………… . as they were a few years ago.</p>
-          <label><input type="radio" name="q5" value="A" /> more expensive</label>
-          <label><input type="radio" name="q5" value="B" /> expensive</label>
-          <label><input type="radio" name="q5" value="C" /> most expensive</label>
-          <label><input type="radio" name="q5" value="D" /> less expensive</label>
-        </div>
-        
-        <div class="question">
-          <p>6. The ……………………… tree in the world is in Sweden.</p>
-          <label><input type="radio" name="q6" value="A" /> old</label>
-          <label><input type="radio" name="q6" value="B" /> older</label>
-          <label><input type="radio" name="q6" value="C" /> eldest</label>
-          <label><input type="radio" name="q6" value="D" /> oldest</label>
-        </div>
-        
-        <div class="question">
-          <p>7. Climbing is the ………………………. dangerous sport in the world.</p>
-          <label><input type="radio" name="q7" value="A" /> more</label>
-          <label><input type="radio" name="q7" value="B" /> most</label>
-          <label><input type="radio" name="q7" value="C" /> less</label>
-          <label><input type="radio" name="q7" value="D" /> as</label>
-        </div>
-        
-        <div class="question">
-          <p>8. Climbing is ………………………………. than cycling.</p>
-          <label><input type="radio" name="q8" value="A" /> more dangerous</label>
-          <label><input type="radio" name="q8" value="B" /> most dangerous</label>
-          <label><input type="radio" name="q8" value="C" /> so dangerous</label>
-          <label><input type="radio" name="q8" value="D" /> as dangerous</label>
-        </div>
-        
-        <div class="question">
-          <p>9. Everest is the …………………………… mountain in the world.</p>
-          <label><input type="radio" name="q9" value="A" /> high</label>
-          <label><input type="radio" name="q9" value="B" /> higher</label>
-          <label><input type="radio" name="q9" value="C" /> highest</label>
-          <label><input type="radio" name="q9" value="D" /> highly</label>
-        </div>
-        
-        <div class="question">
-          <p>10. London isn't …………….. hot as Cairo.</p>
-          <label><input type="radio" name="q10" value="A" /> so</label>
-          <label><input type="radio" name="q10" value="B" /> very</label>
-          <label><input type="radio" name="q10" value="C" /> highly</label>
-          <label><input type="radio" name="q10" value="D" /> a lot</label>
-        </div>
-        
-        <div class="question">
-          <p>11. Everest is ………………………. than Kilimanjaro.</p>
-          <label><input type="radio" name="q11" value="A" /> high</label>
-          <label><input type="radio" name="q11" value="B" /> higher</label>
-          <label><input type="radio" name="q11" value="C" /> highest</label>
-          <label><input type="radio" name="q11" value="D" /> highly</label>
-        </div>
-        
-        <div class="question">
-          <p>12. The …………………… place in the ocean is called Challenger Deep.</p>
-          <label><input type="radio" name="q12" value="A" /> deepest</label>
-          <label><input type="radio" name="q12" value="B" /> deep</label>
-          <label><input type="radio" name="q12" value="C" /> deeper</label>
-          <label><input type="radio" name="q12" value="D" /> depth</label>
-        </div>
-        
-        <div class="question">
-          <p>13. The Pacific Ocean is the …………………………….ocean in the world.</p>
-          <label><input type="radio" name="q13" value="A" /> biggest</label>
-          <label><input type="radio" name="q13" value="B" /> bigger</label>
-          <label><input type="radio" name="q13" value="C" /> big</label>
-          <label><input type="radio" name="q13" value="D" /> tallest</label>
-        </div>
-        
-        <div class="question">
-          <p>14. The warmer the weather, the ……………………………. I feel.</p>
-          <label><input type="radio" name="q14" value="A" /> good</label>
-          <label><input type="radio" name="q14" value="B" /> better</label>
-          <label><input type="radio" name="q14" value="C" /> best</label>
-          <label><input type="radio" name="q14" value="D" /> more good</label>
-        </div>
-        
-        <div class="question">
-          <p>15. Dalia is the same …………………………….. as Diana.</p>
-          <label><input type="radio" name="q15" value="A" /> old</label>
-          <label><input type="radio" name="q15" value="B" /> young</label>
-          <label><input type="radio" name="q15" value="C" /> age</label>
-          <label><input type="radio" name="q15" value="D" /> older</label>
-        </div>
-        
-        <div class="question">
-          <p>16. Sara is the ………………………….. of the two sisters.</p>
-          <label><input type="radio" name="q16" value="A" /> young</label>
-          <label><input type="radio" name="q16" value="B" /> younger</label>
-          <label><input type="radio" name="q16" value="C" /> youngest</label>
-          <label><input type="radio" name="q16" value="D" /> more young</label>
-        </div>
-        
-        <div class="question">
-          <p>17. Giraffes are ………………………………. of all animals.</p>
-          <label><input type="radio" name="q17" value="A" /> tall</label>
-          <label><input type="radio" name="q17" value="B" /> taller</label>
-          <label><input type="radio" name="q17" value="C" /> the tallest</label>
-          <label><input type="radio" name="q17" value="D" /> as tall</label>
-        </div>
-        
-        <div class="question">
-          <p>18. Today is ………………………….. hotter than yesterday.</p>
-          <label><input type="radio" name="q18" value="A" /> a little</label>
-          <label><input type="radio" name="q18" value="B" /> little</label>
-          <label><input type="radio" name="q18" value="C" /> less</label>
-          <label><input type="radio" name="q18" value="D" /> the least</label>
-        </div>
-        
-        <div class="question">
-          <p>19. Ayman is the ………………………….. boy in our class.</p>
-          <label><input type="radio" name="q19" value="A" /> highest</label>
-          <label><input type="radio" name="q19" value="B" /> longest</label>
-          <label><input type="radio" name="q19" value="C" /> tallest</label>
-          <label><input type="radio" name="q19" value="D" /> deepest</label>
-        </div>
-        
-        <div class="question">
-          <p>20. I'm very clever at cooking, but my mother is ……… cook I've ever known.</p>
-          <label><input type="radio" name="q20" value="A" /> cleverer</label>
-          <label><input type="radio" name="q20" value="B" /> clever</label>
-          <label><input type="radio" name="q20" value="C" /> less clever</label>
-          <label><input type="radio" name="q20" value="D" /> the cleverest</label>
-        </div>
-        
-        <div class="question">
-          <p>21. I love all my family, but I love my father ………..….. of all.</p>
-          <label><input type="radio" name="q21" value="A" /> more</label>
-          <label><input type="radio" name="q21" value="B" /> much</label>
-          <label><input type="radio" name="q21" value="C" /> the most</label>
-          <label><input type="radio" name="q21" value="D" /> most</label>
-        </div>
-        
-        <div class="question">
-          <p>22. Samy speaks French …………….….. than he writes it.</p>
-          <label><input type="radio" name="q22" value="A" /> fewer</label>
-          <label><input type="radio" name="q22" value="B" /> worse</label>
-          <label><input type="radio" name="q22" value="C" /> fewest</label>
-          <label><input type="radio" name="q22" value="D" /> worst</label>
-        </div>
-        
-        <div class="question">
-          <p>23. Going by plane is ………….…… more expensive than going by bus.</p>
-          <label><input type="radio" name="q23" value="A" /> a lot</label>
-          <label><input type="radio" name="q23" value="B" /> a lot of</label>
-          <label><input type="radio" name="q23" value="C" /> lots of</label>
-          <label><input type="radio" name="q23" value="D" /> many</label>
-        </div>
-        
-        <div class="question">
-          <p>24. The teacher told us ……….…….. an interesting story.</p>
-          <label><input type="radio" name="q24" value="A" /> so</label>
-          <label><input type="radio" name="q24" value="B" /> thus</label>
-          <label><input type="radio" name="q24" value="C" /> very</label>
-          <label><input type="radio" name="q24" value="D" /> such</label>
-        </div>
-        
-        <div class="question">
-          <p>25. Benha is the nearest town ………….. Cairo.</p>
-          <label><input type="radio" name="q25" value="A" /> at</label>
-          <label><input type="radio" name="q25" value="B" /> from</label>
-          <label><input type="radio" name="q25" value="C" /> to</label>
-          <label><input type="radio" name="q25" value="D" /> in</label>
-        </div>
+
+<div class="question">
+          <p>3. ما هو موسمي المفضل؟</p>
+          <label><input type="radio" name="q3" value="A" />الصيف</label>
+          <label><input type="radio" name="q3" value="B" />الشتاء</label>
+          <label><input type="radio" name="q3" value="C" />الخريف</label>
+          <label><input type="radio" name="q3" value="D" />الربيع</label>
+</div>
+        ,
         
         <div class="text-center">
           <button type="button" onclick="submitQuiz()" id="submit-btn">Submit Quiz</button>
@@ -453,14 +280,10 @@
   <script>
     // الإجابات الصحيحة
     const correctAnswers = {
-      q1: "D", q2: "A", q3: "A", q4: "A", q5: "B",
-      q6: "D", q7: "B", q8: "A", q9: "C", q10: "A",
-      q11: "B", q12: "A", q13: "A", q14: "B", q15: "C",
-      q16: "B", q17: "C", q18: "A", q19: "C", q20: "D",
-      q21: "C", q22: "B", q23: "A", q24: "D", q25: "C"
+      q1: "B", q2: "A", q3: "B"
     };
     
-    let timeLeft = 600;
+    let timeLeft = 120;
     let timerInterval;
     let quizSubmitted = false;
     let refreshWarningShown = false;
