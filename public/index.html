@@ -321,21 +321,21 @@
             localStorage.removeItem('quizSubmitted');
             document.getElementById('user-info').innerHTML = `
               <div class="retake-info">
-                <p>You are allowed to retake the quiz!</p>
-                <p>Please enter your information and start the quiz.</p>
+                <p>يُسمح لك بإعادة الاختبار!</p>
+                <p>يرجى إدخال معلوماتك وبدء الاختبار.</p>
               </div>
-              <h3>Enter Your Information</h3>
-              <input type="text" id="name" placeholder="Enter your full name" value="${localStorage.getItem('userName') || ''}" />
-              <input type="tel" id="phone" placeholder="Enter your phone number" value="${userPhone}" />
+              <h3>أدخل معلوماتك</h3>
+              <input type="text" id="name" placeholder="أدخل اسمك بالكامل" value="${localStorage.getItem('userName') || ''}" />
+              <input type="tel" id="phone" placeholder="أدخل رقم هاتفك" value="${userPhone}" />
               <div class="text-center">
-                <button onclick="startQuiz()">Start Quiz</button>
+                <button onclick="startQuiz()">ابدأ</button>
               </div>
             `;
           } else if (localStorage.getItem('quizSubmitted')) {
             document.getElementById('user-info').innerHTML = `
               <div class="result info">
-                <p>You have already submitted the quiz.</p>
-                <p>Please contact the administrator if you need to retake it.</p>
+                <p>لقد قمت بالفعل بإرسال الاختبار.</p>
+                <p>يرجى الاتصال بالمسؤول إذا كنت بحاجة إلى إعادة الاختبار.</p>
               </div>
             `;
           }
@@ -344,8 +344,8 @@
           if (localStorage.getItem('quizSubmitted')) {
             document.getElementById('user-info').innerHTML = `
               <div class="result info">
-                <p>You have already submitted the quiz.</p>
-                <p>Please contact the administrator if you need to retake it.</p>
+                <p>لقد قمت بالفعل بإرسال الاختبار.</p>
+                <p>يرجى الاتصال بالمسؤول إذا كنت بحاجة إلى إعادة الاختبار.</p>
               </div>
             `;
           }
@@ -353,8 +353,8 @@
       } else if (localStorage.getItem('quizSubmitted')) {
         document.getElementById('user-info').innerHTML = `
           <div class="result info">
-            <p>You have already submitted the quiz.</p>
-            <p>Please contact the administrator if you need to retake it.</p>
+            <p>لقد قمت بالفعل بإرسال الاختبار.</p>
+            <p>يرجى الاتصال بالمسؤول إذا كنت بحاجة إلى إعادة الاختبار.</p>
           </div>
         `;
       }
@@ -513,11 +513,11 @@
         
         if (response.ok) {
           resultDiv.innerHTML = `
-            <h3>Quiz Result</h3>
-            <p>Score: ${score}%</p>
-            <p>Correct Answers: ${correct}</p>
-            <p>Wrong Answers: ${wrong}</p>
-            <p>Thank you for completing the quiz!</p>
+            <h3>نتيجة الاختبار</h3>
+            <p>نتيجة: ${score}%</p>
+            <p>الاجابات الصحيحة: ${correct}</p>
+            <p>الاجابات الخاطئة: ${wrong}</p>
+            <p>شكراً لك على إكمال الاختبار!</p>
           `;
           localStorage.setItem('quizSubmitted', 'true');
         } else {
