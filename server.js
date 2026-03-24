@@ -130,7 +130,7 @@ app.post("/api/submit", async (req, res) => {
 
       if (!latestResult.allowedRetake) {
         return res.status(400).json({
-          message: "You have already submitted the quiz."
+          message: "لقد قمت بالفعل بإرسال الاختبار."
         });
       }
 
