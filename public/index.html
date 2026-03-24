@@ -427,7 +427,7 @@
       const phone = document.getElementById("phone").value.trim();
       
       if (!name || !phone) {
-        alert("Please enter your name and phone number");
+        alert("يرجى إدخال اسمك ورقم هاتفك");
         return;
       }
       
@@ -522,16 +522,16 @@
           localStorage.setItem('quizSubmitted', 'true');
         } else {
           resultDiv.innerHTML = `
-            <h3>Error</h3>
-            <p>${data.message || 'Failed to submit quiz'}</p>
+            <h3>خطأ</h3>
+            <p>${data.message || 'فشل في إرسال الاختبار'}</p>
           `;
           resultDiv.classList.add("info");
         }
       } catch (error) {
         console.error("Error submitting quiz:", error);
         resultDiv.innerHTML = `
-          <h3>Network Error</h3>
-          <p>Please try again later</p>
+          <h3>خطأ في الشبكة</h3>
+          <p>يرجى المحاولة مرة أخرى لاحقاً</p>
         `;
         resultDiv.classList.add("info");
       }
