@@ -5,7 +5,6 @@ import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from "url";
-import fetch from "node-fetch";
 import { initializeApp, cert } from "firebase-admin/app";
 import { getFirestore } from "firebase-admin/firestore";
 
@@ -22,35 +21,15 @@ const __dirname = path.dirname(__filename);
 // Serve static files
 app.use(express.static(path.join(__dirname, "public")));
 
-// root route
+// 👇 ده أهم تعديل (root route)
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-// login page
+// (اختياري) روت لصفحة اللوجين
 app.get("/login", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "login.html"));
 });
-
-// --- 🔔 Telegram Notification Function ---
-async function sendTelegram(message) {
-  try {
-    const url = `https://api.telegram.org/bot${process.env.TELEGRAM_TOKEN}/sendMessage`;
-
-    await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        chat_id: process.env.TELEGRAM_CHAT_ID,
-        text: message
-      })
-    });
-  } catch (err) {
-    console.error("Telegram Error:", err);
-  }
-}
 
 const FIREBASE_CONFIG = JSON.parse(process.env.FIREBASE_CONFIG);
 initializeApp({ credential: cert(FIREBASE_CONFIG) });
@@ -60,7 +39,6 @@ const db = getFirestore();
 function verifyToken(req, res, next) {
   const authHeader = req.headers["authorization"];
   if (!authHeader) return res.status(401).json({ message: "No token" });
-
   const token = authHeader.split(" ")[1];
   jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
     if (err) return res.status(401).json({ message: "Invalid token" });
@@ -70,24 +48,15 @@ function verifyToken(req, res, next) {
 }
 
 // --- API routes ---
-
-// LOGIN
-app.post("/api/login", async (req, res) => {
+app.post("/api/login", (req, res) => {
   const { username, password } = req.body;
-
   if (
     username === process.env.ADMIN_USERNAME &&
     password === process.env.ADMIN_PASSWORD
   ) {
-    const token = jwt.sign({ username }, process.env.JWT_SECRET, {
-      expiresIn: "2h"
-    });
-
-    await sendTelegram(`🔐 Admin Login:\nUsername: ${username}`);
-
+    const token = jwt.sign({ username }, process.env.JWT_SECRET, { expiresIn: "2h" });
     res.json({ token });
   } else {
-    await sendTelegram(`❌ Failed Login:\nUsername: ${username}`);
     res.status(401).json({ message: "Invalid credentials" });
   }
 });
@@ -96,18 +65,14 @@ app.post("/api/login", async (req, res) => {
 app.post("/api/track-attempt", async (req, res) => {
   try {
     const { phone, action } = req.body;
-
+    
     await db.collection("attempts").add({
       phone,
       action,
       timestamp: new Date(),
       userAgent: req.get("User-Agent")
     });
-
-    await sendTelegram(
-      `📊 Attempt:\nPhone: ${phone}\nAction: ${action}`
-    );
-
+    
     res.json({ message: "Attempt tracked successfully" });
   } catch (error) {
     console.error(error);
@@ -120,8 +85,7 @@ app.get("/api/attempts/:phone", async (req, res) => {
   try {
     const { phone } = req.params;
 
-    const snapshot = await db
-      .collection("attempts")
+    const snapshot = await db.collection("attempts")
       .where("phone", "==", phone)
       .orderBy("timestamp", "desc")
       .get();
@@ -131,8 +95,6 @@ app.get("/api/attempts/:phone", async (req, res) => {
       ...doc.data(),
       timestamp: doc.data().timestamp?.toDate?.() || doc.data().timestamp
     }));
-
-    await sendTelegram(`🔍 Fetch Attempts:\nPhone: ${phone}`);
 
     res.json(attempts);
   } catch (error) {
@@ -144,7 +106,7 @@ app.get("/api/attempts/:phone", async (req, res) => {
 // Submit
 app.post("/api/submit", async (req, res) => {
   try {
-    const { name, phone, correct, wrong, score } = req.body;
+    const { name, phone, correct, wrong, score, userAnswers } = req.body;
 
     await db.collection("attempts").add({
       phone,
@@ -152,8 +114,7 @@ app.post("/api/submit", async (req, res) => {
       timestamp: new Date()
     });
 
-    const existingSnapshot = await db
-      .collection("results")
+    const existingSnapshot = await db.collection("results")
       .where("phone", "==", phone)
       .get();
 
@@ -163,8 +124,8 @@ app.post("/api/submit", async (req, res) => {
         ...doc.data()
       }));
 
-      const latestResult = results.sort(
-        (a, b) => new Date(b.timestamp) - new Date(a.timestamp)
+      const latestResult = results.sort((a, b) =>
+        new Date(b.timestamp) - new Date(a.timestamp)
       )[0];
 
       if (!latestResult.allowedRetake) {
@@ -182,13 +143,10 @@ app.post("/api/submit", async (req, res) => {
       correct,
       wrong,
       score,
+      userAnswers,
       timestamp: new Date(),
       allowedRetake: false
     });
-
-    await sendTelegram(
-      `✅ New Submission:\nName: ${name}\nPhone: ${phone}\nScore: ${score}`
-    );
 
     res.json({ message: "Submitted successfully" });
   } catch (error) {
@@ -200,8 +158,7 @@ app.post("/api/submit", async (req, res) => {
 // Get results
 app.get("/api/results", verifyToken, async (req, res) => {
   try {
-    const snapshot = await db
-      .collection("results")
+    const snapshot = await db.collection("results")
       .orderBy("timestamp", "desc")
       .get();
 
@@ -210,8 +167,6 @@ app.get("/api/results", verifyToken, async (req, res) => {
       ...doc.data(),
       timestamp: doc.data().timestamp?.toDate?.() || doc.data().timestamp
     }));
-
-    await sendTelegram("📥 Admin fetched results");
 
     res.json(results);
   } catch (error) {
@@ -224,9 +179,6 @@ app.get("/api/results", verifyToken, async (req, res) => {
 app.delete("/api/results/:id", verifyToken, async (req, res) => {
   try {
     await db.collection("results").doc(req.params.id).delete();
-
-    await sendTelegram(`🗑️ Result Deleted:\nID: ${req.params.id}`);
-
     res.json({ message: "Deleted successfully" });
   } catch (error) {
     console.error(error);
@@ -241,9 +193,6 @@ app.post("/api/results/:id/allow-retake", verifyToken, async (req, res) => {
       allowedRetake: true,
       retakeAllowedAt: new Date()
     });
-
-    await sendTelegram(`🔄 Retake Allowed:\nID: ${req.params.id}`);
-
     res.json({ message: "Retake allowed" });
   } catch (error) {
     console.error(error);
@@ -258,9 +207,6 @@ app.post("/api/results/:id/disallow-retake", verifyToken, async (req, res) => {
       allowedRetake: false,
       retakeDisallowedAt: new Date()
     });
-
-    await sendTelegram(`⛔ Retake Disallowed:\nID: ${req.params.id}`);
-
     res.json({ message: "Retake disallowed" });
   } catch (error) {
     console.error(error);
@@ -271,8 +217,7 @@ app.post("/api/results/:id/disallow-retake", verifyToken, async (req, res) => {
 // Check retake
 app.get("/api/check-retake/:phone", async (req, res) => {
   try {
-    const snapshot = await db
-      .collection("results")
+    const snapshot = await db.collection("results")
       .where("phone", "==", req.params.phone)
       .get();
 
@@ -285,13 +230,9 @@ app.get("/api/check-retake/:phone", async (req, res) => {
       timestamp: doc.data().timestamp?.toDate?.() || doc.data().timestamp
     }));
 
-    const latest = results.sort(
-      (a, b) => new Date(b.timestamp) - new Date(a.timestamp)
+    const latest = results.sort((a, b) =>
+      new Date(b.timestamp) - new Date(a.timestamp)
     )[0];
-
-    await sendTelegram(
-      `🔎 Check Retake:\nPhone: ${req.params.phone}`
-    );
 
     res.json({ allowedRetake: latest.allowedRetake || false });
   } catch (error) {
