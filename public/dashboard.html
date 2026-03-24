@@ -404,69 +404,21 @@
 
     // تعريف الإجابات الصحيحة
     const correctAnswers = {
-      q1: "D", q2: "A", q3: "A", q4: "A", q5: "B",
-      q6: "D", q7: "B", q8: "A", q9: "C", q10: "A",
-      q11: "B", q12: "A", q13: "A", q14: "B", q15: "C",
-      q16: "B", q17: "C", q18: "A", q19: "C", q20: "D",
-      q21: "C", q22: "B", q23: "A", q24: "D", q25: "C"
+      q1: "B", q2: "A", q3: "B"
     };
 
     // تعريف خيارات الإجابات لكل سؤال
     const answerOptions = {
-      q1: { A: "exciting", B: "more exciting", C: "most exciting", D: "the most exciting" },
-      q2: { A: "a lot", B: "a lot of", C: "lots of", D: "many" },
-      q3: { A: "tall", B: "heavy", C: "high", D: "long" },
-      q4: { A: "worse", B: "the worst", C: "more badly", D: "badly" },
-      q5: { A: "more expensive", B: "expensive", C: "most expensive", D: "less expensive" },
-      q6: { A: "old", B: "older", C: "eldest", D: "oldest" },
-      q7: { A: "more", B: "most", C: "less", D: "as" },
-      q8: { A: "more dangerous", B: "most dangerous", C: "so dangerous", D: "as dangerous" },
-      q9: { A: "high", B: "higher", C: "highest", D: "highly" },
-      q10: { A: "so", B: "very", C: "highly", D: "a lot" },
-      q11: { A: "high", B: "higher", C: "highest", D: "highly" },
-      q12: { A: "deepest", B: "deep", C: "deeper", D: "depth" },
-      q13: { A: "biggest", B: "bigger", C: "big", D: "tallest" },
-      q14: { A: "good", B: "better", C: "best", D: "more good" },
-      q15: { A: "old", B: "young", C: "age", D: "older" },
-      q16: { A: "young", B: "younger", C: "youngest", D: "more young" },
-      q17: { A: "tall", B: "taller", C: "the tallest", D: "as tall" },
-      q18: { A: "a little", B: "little", C: "less", D: "the least" },
-      q19: { A: "highest", B: "longest", C: "tallest", D: "deepest" },
-      q20: { A: "cleverer", B: "clever", C: "less clever", D: "the cleverest" },
-      q21: { A: "more", B: "much", C: "the most", D: "most" },
-      q22: { A: "fewer", B: "worse", C: "fewest", D: "worst" },
-      q23: { A: "a lot", B: "a lot of", C: "lots of", D: "many" },
-      q24: { A: "so", B: "thus", C: "very", D: "such" },
-      q25: { A: "at", B: "from", C: "to", D: "in" }
+      q1: { A: "السبت", B: "الاحد", C: "الاثنين", D: "الثلاثاء" , E: "الاربعاء" , F: "الخميس"  ,G: "الجمعة" },
+      q2: { A: "تيك توك", B: "نيتفلكس", C: "يوتيوب", D: "لا شئ مما سبق" },
+      q3: { A: "الصيف", B: "الشتاء", C: "الخريف", D: "الربيع" }
     };
 
     // تعريف نصوص الأسئلة
     const questionTexts = {
-      q1: "1. Which do you think is …………………… city in the world?",
-      q2: "2. Going by plane is …………………… more expensive than going by bus.",
-      q3: "3. Ali is as ………………………… as Sami. They are the same height.",
-      q4: "4. Perhaps I looked bad this morning, but she looked …………… .",
-      q5: "5. Cars are twice as …………………… . as they were a few years ago.",
-      q6: "6. The ……………………… tree in the world is in Sweden.",
-      q7: "7. Climbing is the ………………………. dangerous sport in the world.",
-      q8: "8. Climbing is ………………………………. than cycling.",
-      q9: "9. Everest is the …………………………… mountain in the world.",
-      q10: "10. London isn't …………….. hot as Cairo.",
-      q11: "11. Everest is ………………………. than Kilimanjaro.",
-      q12: "12. The …………………… place in the ocean is called Challenger Deep.",
-      q13: "13. The Pacific Ocean is the …………………………….ocean in the world.",
-      q14: "14. The warmer the weather, the ……………………………. I feel.",
-      q15: "15. Dalia is the same …………………………….. as Diana.",
-      q16: "16. Sara is the ………………………….. of the two sisters.",
-      q17: "17. Giraffes are ………………………………. of all animals.",
-      q18: "18. Today is ………………………….. hotter than yesterday.",
-      q19: "19. Ayman is the ………………………….. boy in our class.",
-      q20: "20. I'm very clever at cooking, but my mother is ……… cook I've ever known.",
-      q21: "21. I love all my family, but I love my father ………..….. of all.",
-      q22: "22. Samy speaks French …………….….. than he writes it.",
-      q23: "23. Going by plane is ………….…… more expensive than going by bus.",
-      q24: "24. The teacher told us ……….…….. an interesting story.",
-      q25: "25. Benha is the nearest town ………….. Cairo."
+      q1: "1. ما هو اليوم المفضل لدي من ايام الاسبوع؟",
+      q2: "2. ما هو اكثر تطبيق استخدمه؟",
+      q3: "3. ما هو موسمي المفضل؟"
     };
 
     // متغير لتخزين البيانات
